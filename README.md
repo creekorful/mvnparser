@@ -60,12 +60,12 @@ import (
 	"log"
 )
 
-func main() {
-	// filled with previously declared xml
-	pomStr := "..."
+func main() { 
+    // filled with previously declared xml 
+    pomStr := "..."
 	
-	// Load project from bytes
-    var project MavenProject
+    // Load project from string
+    var project mvnparser.MavenProject
     if err := xml.Unmarshal([]byte(pomStr), &project); err != nil {
         log.Fatalf("unable to unmarshal pom file. Reason: %s", err)
     }
