@@ -1,7 +1,8 @@
 # mvnparser
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/creekorful/mvnparser)](https://goreportcard.com/report/github.com/creekorful/mvnparser)
 [![Build Status](https://travis-ci.org/creekorful/mvnparser.svg?branch=master)](https://travis-ci.org/creekorful/mvnparser)
+[![Go Report Card](https://goreportcard.com/badge/github.com/creekorful/mvnparser)](https://goreportcard.com/report/github.com/creekorful/mvnparser)
+[![Maintainability](https://api.codeclimate.com/v1/badges/ac9fd99e18e6ef2661e3/maintainability)](https://codeclimate.com/github/creekorful/mvnparser/maintainability)
 
 Go parser for maven Project Object Model (POM) file
 
