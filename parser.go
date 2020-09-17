@@ -28,6 +28,7 @@ import "encoding/xml"
 type MavenProject struct {
 	XMLName      xml.Name     `xml:"project"`
 	ModelVersion string       `xml:"modelVersion"`
+	Parent       Parent       `xml:"parent"`
 	GroupId      string       `xml:"groupId"`
 	ArtifactId   string       `xml:"artifactId"`
 	Version      string       `xml:"version"`
@@ -39,6 +40,13 @@ type MavenProject struct {
 	Dependencies         []Dependency         `xml:"dependencies>dependency"`
 	Profiles             []Profile            `xml:"profiles"`
 	Build                Build                `xml:"build"`
+}
+
+// Represent the parent of the project
+type Parent struct {
+	GroupId    string `xml:"groupId"`
+	ArtifactId string `xml:"artifactId"`
+	Version    string `xml:"version"`
 }
 
 // Represent a dependency of the project
