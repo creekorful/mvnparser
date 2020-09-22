@@ -48,6 +48,14 @@ func TestUnmarshal(t *testing.T) {
         </repository>
     </repositories>
 
+    <pluginRepositories>
+        <pluginRepository>
+            <id>private-plugin-repository</id>
+            <name>My private plugin repository</name>
+            <url>http://localhost:8081/repository/maven-private/</url>
+        </pluginRepository>
+    </pluginRepositories>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <build.number>SNAPSHOT</build.number>
@@ -239,5 +247,17 @@ func TestUnmarshal(t *testing.T) {
 
 	if len(project.Dependencies) != 8 {
 		t.Errorf("expecting 8 dependencies found %d", len(project.Dependencies))
+	}
+
+	if project.PluginRepositories[0].Id != "private-plugin-repository" {
+		t.Errorf("pluginRepository[0] id does not match (expected: private-plugin-repository, found: %s)", project.PluginRepositories[0].Id)
+	}
+
+	if project.PluginRepositories[0].Name != "My private plugin repository" {
+		t.Errorf("pluginRepository[0] name does not match (expected: My private plugin repository, found: %s)", project.PluginRepositories[0].Name)
+	}
+
+	if project.PluginRepositories[0].Url != "http://localhost:8081/repository/maven-private/" {
+		t.Errorf("pluginRepository[0] url does not match (expected: http://localhost:8081/repository/maven-private/, found: %s)", project.PluginRepositories[0].Url)
 	}
 }
