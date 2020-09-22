@@ -40,6 +40,7 @@ type MavenProject struct {
 	Dependencies         []Dependency         `xml:"dependencies>dependency"`
 	Profiles             []Profile            `xml:"profiles"`
 	Build                Build                `xml:"build"`
+	PluginRepositories   []PluginRepository   `xml:"pluginRepositories>pluginRepository"`
 }
 
 // Represent the parent of the project
@@ -96,4 +97,11 @@ type Plugin struct {
 	Version    string   `xml:"version"`
 	//todo something like: Configuration map[string]string `xml:"configuration"`
 	// todo executions
+}
+
+// Represent a pluginRepository
+type PluginRepository struct {
+	Id   string `xml:"id"`
+	Name string `xml:"name"`
+	Url  string `xml:"url"`
 }
