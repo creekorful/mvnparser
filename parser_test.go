@@ -254,10 +254,10 @@ func TestUnmarshal(t *testing.T) {
 	}
 
 	if project.PluginRepositories[0].Name != "My private plugin repository" {
-		t.Errorf("pluginRepository[0] id does not match (expected: My private plugin repository, found: %s)", project.PluginRepositories[0].Name)
+		t.Errorf("pluginRepository[0] name does not match (expected: My private plugin repository, found: %s)", project.PluginRepositories[0].Name)
 	}
 
 	if project.PluginRepositories[0].Url != "http://localhost:8081/repository/maven-private/" {
-		t.Errorf("pluginRepository[0] id does not match (expected: http://localhost:8081/repository/maven-private/, found: %s)", project.PluginRepositories[0].Url)
+		t.Errorf("pluginRepository[0] url does not match (expected: http://localhost:8081/repository/maven-private/, found: %s)", project.PluginRepositories[0].Url)
 	}
 }
