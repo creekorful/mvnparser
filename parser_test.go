@@ -40,6 +40,17 @@ func TestUnmarshal(t *testing.T) {
     <packaging>jar</packaging>
     <name>My App</name>
 
+    <parent>
+        <groupId>fr.creekorful</groupId>
+        <artifactId>parent-project</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <modules>
+        <module>core</module>
+        <module>dao</module>
+    </modules>
+
     <repositories>
         <repository>
             <id>private-repository</id>
@@ -260,4 +271,34 @@ func TestUnmarshal(t *testing.T) {
 	if project.PluginRepositories[0].Url != "http://localhost:8081/repository/maven-private/" {
 		t.Errorf("pluginRepository[0] url does not match (expected: http://localhost:8081/repository/maven-private/, found: %s)", project.PluginRepositories[0].Url)
 	}
+
+	if len(project.Modules) != 2 {
+		t.Error("Number of module doesn't match")
+	}
+	if !contains(project.Modules, "core") {
+		t.Error("Module core absent")
+	}
+	if !contains(project.Modules, "dao") {
+		t.Error("Module dao absent")
+	}
+
+	if project.Parent.ArtifactId != "parent-project" {
+		t.Error("Wrong parent artifactId")
+	}
+	if project.Parent.Version != "1.0.0-SNAPSHOT" {
+		t.Error("Wrong parent version")
+	}
+	if project.Parent.GroupId != "fr.creekorful" {
+		t.Error("Wrong parent groupId")
+	}
+}
+
+func contains(haystack []string, needle string) bool {
+	for _, wheat := range haystack {
+		if wheat == needle {
+			return true
+		}
+	}
+
+	return false
 }

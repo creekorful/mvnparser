@@ -41,6 +41,7 @@ type MavenProject struct {
 	Profiles             []Profile            `xml:"profiles"`
 	Build                Build                `xml:"build"`
 	PluginRepositories   []PluginRepository   `xml:"pluginRepositories>pluginRepository"`
+	Modules              []string             `xml:"modules>module"`
 }
 
 // Represent the parent of the project
