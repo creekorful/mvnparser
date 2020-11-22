@@ -29,16 +29,16 @@ import (
 
 // Represent a POM file
 type MavenProject struct {
-	XMLName      xml.Name     `xml:"project"`
-	ModelVersion string       `xml:"modelVersion"`
-	Parent       Parent       `xml:"parent"`
-	GroupId      string       `xml:"groupId"`
-	ArtifactId   string       `xml:"artifactId"`
-	Version      string       `xml:"version"`
-	Packaging    string       `xml:"packaging"`
-	Name         string       `xml:"name"`
-	Repositories []Repository `xml:"repositories>repository"`
-	Properties   Properties   `xml:"properties"`
+	XMLName              xml.Name             `xml:"project"`
+	ModelVersion         string               `xml:"modelVersion"`
+	Parent               Parent               `xml:"parent"`
+	GroupId              string               `xml:"groupId"`
+	ArtifactId           string               `xml:"artifactId"`
+	Version              string               `xml:"version"`
+	Packaging            string               `xml:"packaging"`
+	Name                 string               `xml:"name"`
+	Repositories         []Repository         `xml:"repositories>repository"`
+	Properties           Properties           `xml:"properties"`
 	DependencyManagement DependencyManagement `xml:"dependencyManagement"`
 	Dependencies         []Dependency         `xml:"dependencies>dependency"`
 	Profiles             []Profile            `xml:"profiles"`
@@ -109,7 +109,6 @@ type PluginRepository struct {
 	Name string `xml:"name"`
 	Url  string `xml:"url"`
 }
-
 
 // Represent Properties
 type Properties map[string]string
