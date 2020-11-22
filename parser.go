@@ -22,7 +22,10 @@
 
 package mvnparser
 
-import "encoding/xml"
+import (
+	"encoding/xml"
+	"io"
+)
 
 // Represent a POM file
 type MavenProject struct {
@@ -35,7 +38,7 @@ type MavenProject struct {
 	Packaging    string       `xml:"packaging"`
 	Name         string       `xml:"name"`
 	Repositories []Repository `xml:"repositories>repository"`
-	//todo something like: Properties           map[string]string    `xml:"properties"`
+	Properties   Properties   `xml:"properties"`
 	DependencyManagement DependencyManagement `xml:"dependencyManagement"`
 	Dependencies         []Dependency         `xml:"dependencies>dependency"`
 	Profiles             []Profile            `xml:"profiles"`
@@ -105,4 +108,30 @@ type PluginRepository struct {
 	Id   string `xml:"id"`
 	Name string `xml:"name"`
 	Url  string `xml:"url"`
+}
+
+
+// Represent Properties
+type Properties map[string]string
+
+func (p *Properties) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
+	*p = map[string]string{}
+	for {
+		key := ""
+		value := ""
+		token, err := d.Token()
+		if err == io.EOF {
+			break
+		}
+		switch tokenType := token.(type) {
+		case xml.StartElement:
+			key = tokenType.Name.Local
+			err := d.DecodeElement(&value, &start)
+			if err != nil {
+				return err
+			}
+			(*p)[key] = value
+		}
+	}
+	return nil
 }

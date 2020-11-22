@@ -291,6 +291,79 @@ func TestUnmarshal(t *testing.T) {
 	if project.Parent.GroupId != "fr.creekorful" {
 		t.Error("Wrong parent groupId")
 	}
+	if len(project.Properties) != 2 {
+		t.Error("All Properties should be read")
+	}
+	if _, ok := project.Properties["project.build.sourceEncoding"]; !ok {
+		t.Error("Property project.build.sourceEncoding should exists")
+	}
+	if _, ok := project.Properties["build.number"]; !ok {
+		t.Error("build.number")
+	}
+
+}
+
+func TestEmptyProperties(t *testing.T) {
+	pomStr := `<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.example</groupId>
+    <artifactId>my-app</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+
+    <packaging>jar</packaging>
+    <name>My App</name>
+
+    <parent>
+        <groupId>fr.creekorful</groupId>
+        <artifactId>parent-project</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <properties>
+    </properties>
+</project>`
+
+	var project MavenProject
+	if err := xml.Unmarshal([]byte(pomStr), &project); err != nil {
+		t.Errorf("unable to unmarshal pom file. Reason: %s", err)
+	}
+
+	if len(project.Properties) != 0 {
+		t.Error("property map should be empty")
+	}
+
+}
+
+func TestWithoutProperties(t *testing.T) {
+	pomStr := `<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.example</groupId>
+    <artifactId>my-app</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+
+    <packaging>jar</packaging>
+    <name>My App</name>
+
+    <parent>
+        <groupId>fr.creekorful</groupId>
+        <artifactId>parent-project</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+</project>`
+
+	var project MavenProject
+	if err := xml.Unmarshal([]byte(pomStr), &project); err != nil {
+		t.Errorf("unable to unmarshal pom file. Reason: %s", err)
+	}
+
+	if len(project.Properties) != 0 {
+		t.Error("property map should be empty")
+	}
+
 }
 
 func contains(haystack []string, needle string) bool {
