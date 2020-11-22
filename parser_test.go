@@ -294,10 +294,10 @@ func TestUnmarshal(t *testing.T) {
 	if len(project.Properties) != 2 {
 		t.Error("All Properties should be read")
 	}
-	if _, ok := project.Properties["project.build.sourceEncoding"]; !ok {
+	if val, _ := project.Properties["project.build.sourceEncoding"]; val != "UTF-8" {
 		t.Error("Property project.build.sourceEncoding should exists")
 	}
-	if _, ok := project.Properties["build.number"]; !ok {
+	if val, _ := project.Properties["build.number"]; val != "SNAPSHOT" {
 		t.Error("build.number")
 	}
 
