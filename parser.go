@@ -49,9 +49,10 @@ type MavenProject struct {
 
 // Represent the parent of the project
 type Parent struct {
-	GroupId    string `xml:"groupId"`
-	ArtifactId string `xml:"artifactId"`
-	Version    string `xml:"version"`
+	GroupId      string `xml:"groupId"`
+	ArtifactId   string `xml:"artifactId"`
+	Version      string `xml:"version"`
+	RelativePath string `xml:"relativePath"`
 }
 
 // Represent a dependency of the project
