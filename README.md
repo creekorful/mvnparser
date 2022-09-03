@@ -1,6 +1,6 @@
 # mvnparser
 
-[![Build Status](https://travis-ci.org/creekorful/mvnparser.svg?branch=master)](https://travis-ci.org/creekorful/mvnparser)
+[![Continuous Integration](https://github.com/creekorful/mvnparser/actions/workflows/ci.yml/badge.svg)](https://github.com/creekorful/mvnparser/actions/workflows/ci.yml)
 [![Go Report Card](https://goreportcard.com/badge/github.com/creekorful/mvnparser)](https://goreportcard.com/report/github.com/creekorful/mvnparser)
 [![Maintainability](https://api.codeclimate.com/v1/badges/ac9fd99e18e6ef2661e3/maintainability)](https://codeclimate.com/github/creekorful/mvnparser/maintainability)
 
